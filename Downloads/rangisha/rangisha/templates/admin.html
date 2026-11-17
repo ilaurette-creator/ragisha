@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not logged_in %}
+<section class="card">
+  <h1>{{ t('admin') }}</h1>
+  <form method="post">
+    <label>{{ t('password') }}<input type="password" name="password" required></label>
+    <button class="btn">{{ t('login') }}</button>
+  </form>
+</section>
+{% else %}
+<section class="card">
+  <h1>{{ t('admin') }}</h1>
+  <a class="btn" href="{{ url_for('admin_add') }}">{{ t('add_found') }}</a>
+  <a class="btn alt" href="{{ url_for('admin_logout') }}">{{ t('logout') }}</a>
+</section>
+{% for title, rows in groups %}
+<section class="card">
+  <h2>{{ t(title) }} ({{ rows|length }})</h2>
+  {% for e in rows %}
+  <p class="row">{% for k, v in e.items() %}{{ t(v) if k == 'doc_type' else v }}{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
+  {% endfor %}
+</section>
+{% endfor %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>{{ t('hero_title') }}</h1>
+  <p>{{ t('hero_text') }}</p>
+  <a class="btn" href="{{ url_for('report_lost') }}">{{ t('report_lost') }}</a>
+  <a class="btn alt" href="{{ url_for('found') }}">{{ t('found_docs') }}</a>
+</section>
+<section class="card"><h2>{{ t('leaders_title') }}</h2><p>{{ t('leaders_text') }}</p></section>
+<section class="card"><h2>{{ t('police_title') }}</h2><p>{{ t('police_text') }}</p></section>
+<section class="card center">
+  <a class="btn" href="{{ url_for('report_found') }}">{{ t('report_found') }}</a>
+  <a class="btn alt" href="{{ url_for('help_desk') }}">{{ t('help') }}</a>
+</section>
+{% endblock %}

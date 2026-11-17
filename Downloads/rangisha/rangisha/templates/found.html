@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ t('found_docs') }}</h1>
+{% if docs %}
+<div class="scroll"><table>
+  <tr><th>{{ t('doc_type') }}</th><th>{{ t('owner_name') }}</th><th>{{ t('kept_at') }}</th><th>{{ t('date') }}</th></tr>
+  {% for d in docs %}
+  <tr><td>{{ t(d.doc_type) }}</td><td>{{ d.owner }}</td><td>{{ d.place }}</td><td>{{ d.created }}</td></tr>
+  {% endfor %}
+</table></div>
+{% else %}<p>{{ t('none_found') }}</p>{% endif %}
+{% endblock %}

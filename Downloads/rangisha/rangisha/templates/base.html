@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RANGISHA</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+  <a class="logo" href="{{ url_for('home') }}">RANGISHA</a>
+  {% if session.lang %}
+  <button id="menu">&#9776;</button>
+  <nav id="nav">
+    <a href="{{ url_for('home') }}">{{ t('home') }}</a>
+    <a href="{{ url_for('found') }}">{{ t('found_docs') }}</a>
+    <a href="{{ url_for('report_lost') }}">{{ t('report_lost') }}</a>
+    <a href="{{ url_for('report_found') }}">{{ t('report_found') }}</a>
+    <a href="{{ url_for('help_desk') }}">{{ t('help') }}</a>
+    <a href="{{ url_for('admin') }}">{{ t('admin') }}</a>
+    <a href="{{ url_for('set_lang', code='en') }}">EN</a>
+    <a href="{{ url_for('set_lang', code='rw') }}">RW</a>
+  </nav>
+  {% endif %}
+</header>
+<main>
+  {% for m in get_flashed_messages() %}<p class="flash">{{ m }}</p>{% endfor %}
+  {% block content %}{% endblock %}
+</main>
+<footer>&copy; RANGISHA</footer>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>{{ t(title) }}</h1>
+  <form method="post">
+    {% for name, label, kind, required in fields %}
+    <label>{{ t(label) }}{% if required %} *{% endif %}
+      {% if kind == 'select' %}
+        <select name="{{ name }}">{% for d in doc_types %}<option value="{{ d }}">{{ t(d) }}</option>{% endfor %}</select>
+      {% elif kind == 'textarea' %}
+        <textarea name="{{ name }}" rows="4" maxlength="500" {{ 'required' if required }}></textarea>
+      {% else %}
+        <input type="{{ kind }}" name="{{ name }}" maxlength="500" {{ 'required' if required }}>
+      {% endif %}
+    </label>
+    {% endfor %}
+    <button class="btn">{{ t('submit') }}</button>
+  </form>
+</section>
+{% endblock %}
